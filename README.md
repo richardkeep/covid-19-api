@@ -1,6 +1,6 @@
 # Covid 19 API
 
-Fetch COVID-19 Data from an API
+COVID-19 API
 1. https://corona.richardkeep.dev/countries 
 
 ## Sample Data
@@ -10,6 +10,7 @@ Fetch COVID-19 Data from an API
 - [Lumen](https://lumen.laravel.com/) - The stunningly fast micro-framework by Laravel.
 - [Sushi](https://github.com/calebporzio/sushi) - Laravel Eloquent's missing "array" driver.
 - [Goutte](https://github.com/FriendsOfPHP/Goutte) - for crawling the webpage
+- Hosted on [Laravel Forge](https://forge.laravel.com)
 
 ## Live Demo 
 https://richardkeep.dev (Source Code: https://github.com/richardkeep/covid-19)
