@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Cache;
 
 class ApiController extends Controller
 {
+    public function index()
+    {
+        return '¯\_(ツ)_/¯';
+    }
+
     public function countries()
     {
         return Cache::remember('COVID19', Carbon::parse('10 minutes'), function () {
