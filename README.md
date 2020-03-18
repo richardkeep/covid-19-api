@@ -3,6 +3,7 @@
 Fetch COVID-19 Data from an API
 1. https://corona.richardkeep.dev/countries 
 
+## Sample Data
 ![Screenshot from 2020-03-19 00-43-07](https://user-images.githubusercontent.com/3874381/77010353-a6960e80-697a-11ea-8e59-df3352935d77.png)
 
 ## Uses
