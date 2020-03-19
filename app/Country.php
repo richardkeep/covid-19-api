@@ -45,7 +45,6 @@ class Country extends Model
 
             return $data;
         })
-        ->pop() // remove last item: (Totals)
         ->values()
         ->all();
     }

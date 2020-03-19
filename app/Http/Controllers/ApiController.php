@@ -16,7 +16,7 @@ class ApiController extends Controller
     public function countries()
     {
         return Cache::remember('COVID19', Carbon::parse('10 minutes'), function () {
-            return Country::all();
+            return Country::all()->pop()->all();
         });
     }
 }
