@@ -8,7 +8,7 @@ class ApiController extends Controller
 {
     public function index()
     {
-        return '¯\_(ツ)_/¯';
+        return 'https://github.com/richardkeep/covid-19-api';
     }
 
     public function countries()
