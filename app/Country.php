@@ -34,24 +34,14 @@ class Country extends Model
         });
     }
 
-    public function getData()
+    private function getData()
     {
-        $client = new Client();
-        $crawler = $client->request('GET', 'https://www.worldometers.info/coronavirus/');
+        $collection = collect($this->crawl());
 
-        $collection = collect($crawler->filter('#main_table_countries_today')->filter('tr')->each(function ($tr, $i) {
-            return $tr->filter('td')->each(function ($td, $j) {
-                return trim($td->text());
-            });
-        }));
+        $collection->shift(); // Remove 1st item
+        $collection->pop(); // Remove last item
 
-        // Remove the 1st and last items
-        $reversed = $collection->reverse();
-        $reversed->pop();
-        $reversed = $reversed->reverse();
-        $reversed->pop();
-
-        return $reversed->map(function ($item, $k) {
+        return $collection->map(function ($item, $k) {
             foreach ($this->titles as $kk => $v) {
                 // Replace array keys with titles
                 $data[$v] = str_replace(',', '', $item[$kk]);
@@ -61,5 +51,16 @@ class Country extends Model
         })
         ->values()
         ->all();
+    }
+
+    private function crawl()
+    {
+        $crawler = (new Client())->request('GET', 'https://www.worldometers.info/coronavirus/');
+
+        return $crawler->filter('#main_table_countries_today')->filter('tr')->each(function ($tr, $i) {
+            return $tr->filter('td')->each(function ($td, $j) {
+                return trim($td->text());
+            });
+        });
     }
 }
