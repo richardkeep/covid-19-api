@@ -49,6 +49,7 @@ class Country extends Model
 
             return $data;
         })
+        ->sortByDesc('deaths')
         ->values()
         ->all();
     }
