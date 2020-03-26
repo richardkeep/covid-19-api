@@ -29,17 +29,17 @@ class Summary extends Model
 
     public function getRows()
     {
-        return Cache::remember('COVID19-SUMMARY', Carbon::parse('10 minutes'), function () {
+        return Cache::remember('COVID19-all', Carbon::parse('10 minutes'), function () {
             return $this->getData();
         });
     }
 
     private function getData()
     {
-        $item = collect($this->crawl())->shift();
+        $item = $this->crawl();
 
-        foreach ($this->titles as $kk => $v) {
-            $data[$v] = str_replace(',', '', $item[$kk]);
+        foreach ($this->titles as $key => $value) {
+            $data[$value] = $item[$key];
         }
 
         return [$data];
@@ -49,10 +49,12 @@ class Summary extends Model
     {
         $crawler = (new Client())->request('GET', 'https://www.worldometers.info/coronavirus/');
 
-        return $crawler->filter('tr.total_row')->each(function ($tr, $i) {
+        $data = $crawler->filter('#main_table_countries_today')->filter('tr.total_row')->each(function ($tr, $i) {
             return $tr->filter('td')->each(function ($td, $j) {
-                return trim($td->text());
+                return str_replace(',', '', trim($td->text()));
             });
         });
+
+        return $data[0];
     }
 }

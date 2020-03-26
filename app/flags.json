@@ -12,7 +12,7 @@
     },
     {
         "code": "AE",
-        "name": "United Arab Emirates",
+        "name": "UAE",
         "emoji": "🇦🇪"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
         "code": "AG",
-        "name": "Antigua & Barbuda",
+        "name": "Antigua and Barbuda",
         "emoji": "🇦🇬"
     },
     {
@@ -87,7 +87,7 @@
     },
     {
         "code": "BA",
-        "name": "Bosnia & Herzegovina",
+        "name": "Bosnia and Herzegovina",
         "emoji": "🇧🇦"
     },
     {
@@ -202,17 +202,17 @@
     },
     {
         "code": "CD",
-        "name": "Congo - Kinshasa",
+        "name": "DRC",
         "emoji": "🇨🇩"
     },
     {
         "code": "CF",
-        "name": "Central African Republic",
+        "name": "CAR",
         "emoji": "🇨🇫"
     },
     {
         "code": "CG",
-        "name": "Congo - Brazzaville",
+        "name": "Congo",
         "emoji": "🇨🇬"
     },
     {
@@ -222,7 +222,7 @@
     },
     {
         "code": "CI",
-        "name": "Côte d’Ivoire",
+        "name": "Ivory Coast",
         "emoji": "🇨🇮"
     },
     {
@@ -267,7 +267,7 @@
     },
     {
         "code": "CV",
-        "name": "Cape Verde",
+        "name": "Cabo Verde",
         "emoji": "🇨🇻"
     },
     {
@@ -397,7 +397,7 @@
     },
     {
         "code": "FO",
-        "name": "Faroe Islands",
+        "name": "Faeroe Islands",
         "emoji": "🇫🇴"
     },
     {
@@ -412,7 +412,7 @@
     },
     {
         "code": "GB",
-        "name": "United Kingdom",
+        "name": "UK",
         "emoji": "🇬🇧"
     },
     {
@@ -502,7 +502,7 @@
     },
     {
         "code": "HK",
-        "name": "Hong Kong SAR China",
+        "name": "Hong Kong",
         "emoji": "🇭🇰"
     },
     {
@@ -637,12 +637,12 @@
     },
     {
         "code": "KP",
-        "name": "North Korea",
+        "name": "N. Korea",
         "emoji": "🇰🇵"
     },
     {
         "code": "KR",
-        "name": "South Korea",
+        "name": "S. Korea",
         "emoji": "🇰🇷"
     },
     {
@@ -672,7 +672,7 @@
     },
     {
         "code": "LC",
-        "name": "St. Lucia",
+        "name": "Saint Lucia",
         "emoji": "🇱🇨"
     },
     {
@@ -737,7 +737,7 @@
     },
     {
         "code": "MF",
-        "name": "St. Martin",
+        "name": "Saint Martin",
         "emoji": "🇲🇫"
     },
     {
@@ -752,7 +752,7 @@
     },
     {
         "code": "MK",
-        "name": "Macedonia",
+        "name": "North Macedonia",
         "emoji": "🇲🇰"
     },
     {
@@ -762,7 +762,7 @@
     },
     {
         "code": "MM",
-        "name": "Myanmar (Burma)",
+        "name": "Myanmar",
         "emoji": "🇲🇲"
     },
     {
@@ -772,7 +772,7 @@
     },
     {
         "code": "MO",
-        "name": "Macau SAR China",
+        "name": "Macao",
         "emoji": "🇲🇴"
     },
     {
@@ -947,7 +947,7 @@
     },
     {
         "code": "PS",
-        "name": "Palestinian Territories",
+        "name": "Palestine",
         "emoji": "🇵🇸"
     },
     {
@@ -1107,7 +1107,7 @@
     },
     {
         "code": "TC",
-        "name": "Turks & Caicos Islands",
+        "name": "Turks and Caicos",
         "emoji": "🇹🇨"
     },
     {
@@ -1167,7 +1167,7 @@
     },
     {
         "code": "TT",
-        "name": "Trinidad & Tobago",
+        "name": "Trinidad and Tobago",
         "emoji": "🇹🇹"
     },
     {
@@ -1207,7 +1207,7 @@
     },
     {
         "code": "US",
-        "name": "United States",
+        "name": "USA",
         "emoji": "🇺🇸"
     },
     {
@@ -1227,7 +1227,7 @@
     },
     {
         "code": "VC",
-        "name": "St. Vincent & Grenadines",
+        "name": "St. Vincent Grenadines",
         "emoji": "🇻🇨"
     },
     {

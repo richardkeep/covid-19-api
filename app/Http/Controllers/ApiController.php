@@ -9,10 +9,10 @@ class ApiController extends Controller
 {
     public function index()
     {
-        return 'https://github.com/richardkeep/covid-19-api';
+        return redirect('https://github.com/richardkeep/covid-19-api');
     }
 
-    public function all()
+    public function summary()
     {
         return Summary::first();
     }
