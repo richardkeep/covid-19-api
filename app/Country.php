@@ -4,8 +4,6 @@ namespace App;
 
 use Sushi\Sushi;
 use Goutte\Client;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 
 class Country extends Model
@@ -29,9 +27,7 @@ class Country extends Model
 
     public function getRows()
     {
-        return Cache::remember('COVID19', Carbon::parse('10 minutes'), function () {
-            return $this->getData();
-        });
+        return $this->getData();
     }
 
     private function generateEmoji($country)
