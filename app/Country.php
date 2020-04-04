@@ -21,6 +21,11 @@ class Country extends Model
 
     public static function api()
     {
+        $sorter = app()->make('collection.multiSort', [
+            'deaths' => 'desc',
+            'cases' => 'desc',
+        ]);
+
         return collect(static::crawl())->map(function ($item, $k) {
             foreach (static::$titles as $key => $value) {
                 $data[$value] = in_array($value, ['country', 'emoji']) ? $item[$key] : intval($item[$key]);
@@ -30,7 +35,7 @@ class Country extends Model
 
             return $data;
         })
-        ->sortByDesc('deaths')
+        ->sort($sorter)
         ->values()
         ->all();
     }
