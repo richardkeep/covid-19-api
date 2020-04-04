@@ -24,6 +24,7 @@ class Country extends Model
         $sorter = app()->make('collection.multiSort', [
             'deaths' => 'desc',
             'cases' => 'desc',
+            'recovered' => 'desc',
         ]);
 
         return collect(static::crawl())->map(function ($item, $k) {
