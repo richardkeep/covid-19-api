@@ -2,46 +2,28 @@
 
 namespace App;
 
-use Sushi\Sushi;
 use Goutte\Client;
 use Illuminate\Database\Eloquent\Model;
 
 class Summary extends Model
 {
-    use Sushi;
-
-    protected $titles = [
+    protected static $titles = [
         'title', 'cases', 'todayCases', 'deaths',
         'todayDeaths', 'recovered', 'activeCases', 'critical',
     ];
 
-    protected $casts = [
-        'todayCases' => 'integer',
-        'todayDeaths' => 'integer',
-        'cases' => 'integer',
-        'deaths'    => 'integer',
-        'recovered' => 'integer',
-        'activeCases'   => 'integer',
-        'critical' => 'integer',
-    ];
-
-    public function getRows()
+    public static function api()
     {
-        return $this->getData();
-    }
+        $item = static::crawl();
 
-    private function getData()
-    {
-        $item = $this->crawl();
-
-        foreach ($this->titles as $key => $value) {
-            $data[$value] = $item[$key];
+        foreach (static::$titles as $key => $value) {
+            $data[$value] = $value == 'title' ? $item[$key] : intval($item[$key]);
         }
 
-        return [$data];
+        return $data;
     }
 
-    private function crawl()
+    private static function crawl()
     {
         $crawler = (new Client())->request('GET', 'https://www.worldometers.info/coronavirus/');
 

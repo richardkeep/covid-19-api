@@ -2,49 +2,31 @@
 
 namespace App;
 
-use Sushi\Sushi;
 use Goutte\Client;
 use Illuminate\Database\Eloquent\Model;
 
 class Country extends Model
 {
-    use Sushi;
-
-    protected $titles = [
+    protected static $titles = [
         'country', 'cases', 'todayCases', 'deaths',
         'todayDeaths', 'recovered', 'activeCases', 'critical',
     ];
 
-    protected $casts = [
-        'todayCases' => 'integer',
-        'todayDeaths' => 'integer',
-        'cases' => 'integer',
-        'deaths'    => 'integer',
-        'recovered' => 'integer',
-        'activeCases'   => 'integer',
-        'critical' => 'integer',
-    ];
-
-    public function getRows()
-    {
-        return $this->getData();
-    }
-
-    private function generateEmoji($country)
+    private static function generateEmoji($country)
     {
         $flag = file_get_contents(__DIR__.'/flags.json');
 
         return collect(json_decode($flag, true))->firstWhere('name', $country)['emoji'];
     }
 
-    private function getData()
+    public static function api()
     {
-        return collect($this->crawl())->map(function ($item, $k) {
-            foreach ($this->titles as $key => $value) {
-                $data[$value] = $item[$key];
+        return collect(static::crawl())->map(function ($item, $k) {
+            foreach (static::$titles as $key => $value) {
+                $data[$value] = in_array($value, ['country', 'emoji']) ? $item[$key] : intval($item[$key]);
             }
 
-            $data['emoji'] = $this->generateEmoji($item[0]);
+            $data['emoji'] = static::generateEmoji($item[0]);
 
             return $data;
         })
@@ -53,7 +35,7 @@ class Country extends Model
         ->all();
     }
 
-    private function crawl()
+    private static function crawl()
     {
         $crawler = (new Client())->request('GET', 'https://www.worldometers.info/coronavirus/');
 
@@ -64,6 +46,7 @@ class Country extends Model
         });
 
         array_pop($data);
+        array_shift($data);
         array_shift($data);
 
         return $data;
