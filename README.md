@@ -14,7 +14,6 @@ https://richardkeep.dev (Source Code: https://github.com/richardkeep/covid-19)
 
 ## Uses
 - [Lumen](https://lumen.laravel.com/) - The stunningly fast micro-framework by Laravel.
-- [Sushi](https://github.com/calebporzio/sushi) - Laravel Eloquent's missing "array" driver.
 - [Goutte](https://github.com/FriendsOfPHP/Goutte) - for crawling the webpage
 - Hosted on [Laravel Forge](https://forge.laravel.com)
 
