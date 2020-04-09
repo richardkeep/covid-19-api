@@ -27,7 +27,22 @@ class Country extends Model
             'recovered' => 'desc',
         ]);
 
-        return collect(static::crawl())->map(function ($item, $k) {
+        return static::crawl($sorter);
+    }
+
+    private static function crawl($sorter)
+    {
+        $data = (new Client())->request('GET', 'https://www.worldometers.info/coronavirus/')
+            ->filter('#main_table_countries_today')->filter('tr')->each(function ($tr, $i) {
+                return $tr->filter('td')->each(function ($td, $j) {
+                    return str_replace(',', '', trim($td->text()));
+                });
+            });
+
+        $data = collect($data)->slice(9);
+        $data->pop();
+
+        return $data->map(function ($item, $k) {
             foreach (static::$titles as $key => $value) {
                 $data[$value] = in_array($value, ['country', 'emoji']) ? $item[$key] : intval($item[$key]);
             }
@@ -35,26 +50,6 @@ class Country extends Model
             $data['emoji'] = static::generateEmoji($item[0]);
 
             return $data;
-        })
-        ->sort($sorter)
-        ->values()
-        ->all();
-    }
-
-    private static function crawl()
-    {
-        $crawler = (new Client())->request('GET', 'https://www.worldometers.info/coronavirus/');
-
-        $data = $crawler->filter('#main_table_countries_today')->filter('tr')->each(function ($tr, $i) {
-            return $tr->filter('td')->each(function ($td, $j) {
-                return str_replace(',', '', trim($td->text()));
-            });
-        });
-
-        array_pop($data);
-        array_shift($data);
-        array_shift($data);
-
-        return $data;
+        })->sort($sorter)->values()->all();
     }
 }
