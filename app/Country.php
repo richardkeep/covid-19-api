@@ -21,17 +21,6 @@ class Country extends Model
 
     public static function api()
     {
-        $sorter = app()->make('collection.multiSort', [
-            'deaths' => 'desc',
-            'cases' => 'desc',
-            'recovered' => 'desc',
-        ]);
-
-        return static::crawl($sorter);
-    }
-
-    private static function crawl($sorter)
-    {
         $data = (new Client())->request('GET', 'https://www.worldometers.info/coronavirus/')
             ->filter('#main_table_countries_today')->filter('tr')->each(function ($tr, $i) {
                 return $tr->filter('td')->each(function ($td, $j) {
@@ -39,17 +28,27 @@ class Country extends Model
                 });
             });
 
-        $data = collect($data)->slice(9);
+        $sorter = app()->make('collection.multiSort', [
+            'deaths' => 'desc',
+            'cases' => 'desc',
+            'recovered' => 'desc',
+        ]);
 
-        return $data->map(function ($item, $k) {
-            if ($item[0] !== 'Total:') {
+        return collect($data)
+            ->slice(9)
+            ->reject(function ($item) {
+                return $item[0] == 'Total:';
+            })
+            ->map(function ($item) {
                 foreach (static::$titles as $key => $value) {
                     $data[$value] = in_array($value, ['country', 'emoji']) ? $item[$key] : intval($item[$key]);
                 }
                 $data['emoji'] = static::generateEmoji($item[0]);
 
                 return $data;
-            }
-        })->sort($sorter)->values()->filter()->all();
+            })
+        ->sort($sorter)
+        ->values()
+        ->all();
     }
 }
