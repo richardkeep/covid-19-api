@@ -14,25 +14,20 @@ class Summary extends Model
 
     public static function api()
     {
-        $item = static::crawl();
-
-        foreach (static::$titles as $key => $value) {
-            $data[$value] = $value == 'title' ? $item[$key] : intval($item[$key]);
-        }
-
-        return $data;
-    }
-
-    private static function crawl()
-    {
         $crawler = (new Client())->request('GET', 'https://www.worldometers.info/coronavirus/');
 
-        $data = $crawler->filter('#main_table_countries_today')->filter('tr.total_row')->each(function ($tr, $i) {
+        $data = $crawler->filter('#main_table_countries_today')->filter('tr')->each(function ($tr, $i) {
             return $tr->filter('td')->each(function ($td, $j) {
                 return str_replace(',', '', trim($td->text()));
             });
         });
 
-        return $data[0];
+        $item = $data[8];
+
+        foreach (static::$titles as $key => $value) {
+            $dataa[$value] = $value == 'title' ? $item[$key] : intval($item[$key]);
+        }
+
+        return $dataa;
     }
 }
