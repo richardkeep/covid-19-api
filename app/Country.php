@@ -50,6 +50,6 @@ class Country extends Model
 
                 return $data;
             }
-        })->sort($sorter)->values()->all();
+        })->sort($sorter)->values()->filter()->all();
     }
 }
