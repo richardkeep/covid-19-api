@@ -40,16 +40,16 @@ class Country extends Model
             });
 
         $data = collect($data)->slice(9);
-        $data->pop();
 
         return $data->map(function ($item, $k) {
-            foreach (static::$titles as $key => $value) {
-                $data[$value] = in_array($value, ['country', 'emoji']) ? $item[$key] : intval($item[$key]);
+            if ($item[0] !== 'Total:') {
+                foreach (static::$titles as $key => $value) {
+                    $data[$value] = in_array($value, ['country', 'emoji']) ? $item[$key] : intval($item[$key]);
+                }
+                $data['emoji'] = static::generateEmoji($item[0]);
+
+                return $data;
             }
-
-            $data['emoji'] = static::generateEmoji($item[0]);
-
-            return $data;
         })->sort($sorter)->values()->all();
     }
 }
