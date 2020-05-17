@@ -9,7 +9,7 @@ class ApiController extends Controller
 {
     public function index()
     {
-        return redirect('https://github.com/amolood/covid-19-api');
+        return redirect('https://github.com/richardkeep/covid-19-api');
     }
 
     public function summary()
