@@ -14,7 +14,7 @@ https://api.covid19.sd/all
 ![Screenshot from 2020-03-26 09-37-28](https://user-images.githubusercontent.com/3874381/77617541-856a8a80-6f45-11ea-97a6-6a92c537e36c.png)
 
 ## Credit to :
-- ![Richard Keep](https://github.com/richardkeep)
+- [Richard Keep](https://github.com/richardkeep)
 
 
 ## Uses
