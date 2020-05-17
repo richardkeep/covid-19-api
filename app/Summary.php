@@ -21,7 +21,7 @@ class Summary extends Model
                 return str_replace(',', '', trim($td->text()));
             });
         });
-
+//        echo json_encode($data); exit();
         $item = $data[8];
         foreach (static::$titles as $key => $value) {
             $dataa[$value] = $value == 'title' ? $item[$key] : intval($item[$key]);
