@@ -8,15 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Country extends Model
 {
     protected static $titles = [
-        'country', 'cases', 'todayCases', 'deaths',
-        'todayDeaths', 'recovered', 'activeCases', 'critical',
+        'id', 'country', 'cases', 'todayCases', 'deaths',
+        'todayDeaths', 'recovered', 'activeCases', 'critical', 'emoji'
     ];
 
-    private static function generateEmoji($country)
+    private static function generateEmoji($country = 'YE')
     {
-        $flag = file_get_contents(__DIR__.'/flags.json');
-
-        return collect(json_decode($flag, true))->firstWhere('name', $country)['emoji'];
+        $flag = file_get_contents(__DIR__ . '/flags.json');
+        return collect(json_decode($flag, true))->firstWhere('name', $country);
     }
 
     public static function api()
@@ -37,18 +36,17 @@ class Country extends Model
         return collect($data)
             ->slice(9)
             ->reject(function ($item) {
-                return $item[0] == 'Total:';
+                return $item[1] == 'Total:';
             })
             ->map(function ($item) {
                 foreach (static::$titles as $key => $value) {
                     $data[$value] = in_array($value, ['country', 'emoji']) ? $item[$key] : intval($item[$key]);
                 }
-                $data['emoji'] = static::generateEmoji($item[0]);
-
+                $data['emoji'] = static::generateEmoji($item[1])['emoji'];
                 return $data;
             })
-        ->sort($sorter)
-        ->values()
-        ->all();
+            ->sort($sorter)
+            ->values()
+            ->all();
     }
 }
