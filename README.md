@@ -1,8 +1,18 @@
 # Coronavirus Disease 2019 (COVID-19) API
 
-## Live Demo 
-https://api.covid19.sd/countries
+## Live Demo
+
+### For world statistic 
 https://api.covid19.sd/all
+
+### For all countries
+https://api.covid19.sd/countries
+
+### For special country 
+https://api.covid19.sd/country/SD
+
+ISO 3166-1 alpha-2 you can get it from here 
+https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
 
 ## Endpoints
 1. https://api.covid19.sd/all
