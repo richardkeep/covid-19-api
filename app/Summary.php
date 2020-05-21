@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Summary extends Model
 {
     protected static $titles = [
-        'title', 'cases', 'todayCases', 'deaths',
+        'xx', 'title', 'cases', 'todayCases', 'deaths',
         'todayDeaths', 'recovered', 'activeCases', 'critical',
     ];
 
@@ -21,13 +21,12 @@ class Summary extends Model
                 return str_replace(',', '', trim($td->text()));
             });
         });
-
+//        echo json_encode($data); exit();
         $item = $data[8];
-
         foreach (static::$titles as $key => $value) {
             $dataa[$value] = $value == 'title' ? $item[$key] : intval($item[$key]);
         }
-
+        unset($dataa['xx']);
         return $dataa;
     }
 }

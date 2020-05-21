@@ -17,6 +17,11 @@ class ApiController extends Controller
         return Summary::api();
     }
 
+    public function country($country)
+    {
+        return Country::apicountry($country);
+    }
+
     public function countries()
     {
         return Country::api();
