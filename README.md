@@ -25,7 +25,7 @@ https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
 
 ## Contributors :
 - [Richard Keep](https://github.com/richardkeep) [Repo owner]
-- - [Abdalrahman molood](https://github.com/amolood)
+- [Abdalrahman molood](https://github.com/amolood)
 
 
 ## Uses
